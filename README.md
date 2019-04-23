@@ -38,17 +38,21 @@ or imported and bundled via webpack.
 #### Message Routing
 with the below python land consumer methods:
 ```python
+# yourapp/consumers.py
 from channels_websocket_utils.decorators import auto_route
 
-def receive_json(self, content, **kwargs):
-    target_method = getattr(self,content['type'])
-    target_method(content)
+class YourConsumer(SyncConsumer):
 
-# the auto route feature is optional
-@auto_route    
-def your_method(self,event):
-    python_object = {}
-    return python_object
+  # the below method is required if the JS app want to route message by type like channels
+  def receive_json(self, content, **kwargs):
+      target_method = getattr(self,content['type'])
+      target_method(content)
+  
+  # the auto route feature is optional
+  @auto_route    
+  def your_method(self,event):
+      python_object = {}
+      return python_object
 
 ```
 
@@ -112,3 +116,14 @@ In your html template
 <script src="{% static 'websocket_utils/WebSocketManager.js' %}"></script>
 ```
 
+#### Consumer Method Permission
+With the supplied decorator you can also require user permission for a particular consumer method.
+```python
+from channels_websocket_utils.decorators import require_perms
+
+class YourConsumer(SyncConsumer):
+
+  @require_perms(list_o_django_perms)
+  def top_secret (self):
+    pass
+``` 
