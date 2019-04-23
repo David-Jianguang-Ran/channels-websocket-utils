@@ -1,4 +1,4 @@
-#Channels WebSocket Utils
+##Channels WebSocket Utils
 
 This is a Django Channels app used to manage WebSocket Connections.
 Please note that all functions are synchronous.

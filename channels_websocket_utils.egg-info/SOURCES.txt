@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+channels_websocket_utils/__init__.py
+channels_websocket_utils/admin.py
+channels_websocket_utils/apps.py
+channels_websocket_utils/decorators.py
+channels_websocket_utils/models.py
+channels_websocket_utils/tests.py
+channels_websocket_utils/utils.py
+channels_websocket_utils.egg-info/PKG-INFO
+channels_websocket_utils.egg-info/SOURCES.txt
+channels_websocket_utils.egg-info/dependency_links.txt
+channels_websocket_utils.egg-info/top_level.txt
+channels_websocket_utils/migrations/__init__.py
+channels_websocket_utils/static/websocket_utils/WebSocketManager.js
