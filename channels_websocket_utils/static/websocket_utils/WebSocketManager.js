@@ -68,3 +68,6 @@ class WebSocketManager {
     }
 
 }
+
+// Export provided here for bundling scripts
+export default WebSocketManager

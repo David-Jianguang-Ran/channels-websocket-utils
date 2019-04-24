@@ -12,7 +12,7 @@ setup(
   liscense          = "MIT",
   description       = "Django Channels App for managing websocket connections both in python and JS land ",
   long_description  = README,
-  url               = "",
+  url               = "https://github.com/David-Jianguang-Ran/channels-websocket-utils",
   author            = "David Ran",
   author_email      = "jianguang.ran@gmail.com",
   classifiers=[

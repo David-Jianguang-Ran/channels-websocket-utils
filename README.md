@@ -67,7 +67,7 @@ let replyHandler = function (reply) {
 }
 
 const message = {
-  'type' : "your_method",
+  'type' : "your_method", // note that the "type" here doesn't follow channels conventions, it is just the method name
   "key"  : "value"
 }
 
