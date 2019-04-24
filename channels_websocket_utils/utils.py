@@ -6,11 +6,16 @@ from .models import WebSocketToken
 def debug_print(some_str):
   if settings.DEBUG:
     print("Debug Printout from module {} Below\n".format(__name__),some_str)
+  else:
+    # TODO pass for now, add logging later
+    pass
 
 
 def get_websocket_token(user):
   """
-  
+  This function generates a new token and assigns it to a user
+  Note that ONLY signed in users can have ws token assigned to them (AnonymousUser is not a user )
+  Note that this is a synchronous db function.
   :param user: django user obj
   :return: token_str uuid4 string
   """
@@ -18,7 +23,7 @@ def get_websocket_token(user):
   
   # only save user instance if a valid user is passed in
   if isinstance(user,get_user_model()):
-    new_token.user    = user
+    new_token.user  = user
     
   new_token.save()
   return str(new_token.token_str)
@@ -26,10 +31,10 @@ def get_websocket_token(user):
 
 def validate_websocket_token(scope):
   """
-  
-  :param session:
-  :param token:
-  :return:
+  This function checks if a connected user has a valid token assigned to them
+  Note that this is a synchronous db function.
+  :param scope: ASGI scope obj
+  :return: bool
   """
   token_str         = scope['url_route']['kwargs']['token']
   user              = scope['user']
@@ -45,7 +50,10 @@ def validate_websocket_token(scope):
   # is the token assigned to current session?
   if token.user is None:
     return False
-  elif token.user.id == user.id:
+  elif token.user  == user: # Yay Django models
+    # mark token expired before returning
+    token.expired   = True
+    token.save()
     return True
   else:
     return False
