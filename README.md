@@ -17,9 +17,20 @@ David Ran 04/19
 
 ### Install Django app
 
-1. Add channels_websocket_utils to INSTALLED_APPS in settings.py
+- Clone this repo and either:
 
-2. create database tables for models.
+  - Manually copy channels_websocket_utils to your project directory
+  
+     _OR_
+     
+  - Install with pip
+    ```
+    $ pip install <repo_root>/dist/channels-websocket-utils-0.1.tar.gz
+    ```
+    
+- Add channels_websocket_utils to INSTALLED_APPS in settings.py
+
+- create database tables for models.
 ```bash
 $ python manage.py makemigrations
 $ python manage.py migrate
